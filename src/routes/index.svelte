@@ -188,8 +188,9 @@ html {
 }
 
 body {
-  height: 100vh;
-  height: -webkit-fill-available;
+  height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 nav {
