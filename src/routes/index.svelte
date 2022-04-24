@@ -91,45 +91,42 @@ onMount(async () => {
 })
 
 </script>
-<div class="ff-body text-xl">
-  <div class="absolute top-4 left-0 lg:left-28 bg-red-100 transition-all z-50 shadow-lg">
-    {#if invitationName}
-      <div in:slide={{ duration: 1000 }} class="m-4 ff-body text-shadow">
-        <p class="text-sm">Special Invitation for</p>
-        <p class="text-2xl font-bold">{ invitationName }</p>
-      </div>
-    {:else if invited === false}
-      Maaf, alamat undangan Anda tidak valid. Harap kembali menghubungi kontak yang mengirimkan link ini untuk konfirmasi.
-    {/if}
-  </div>
-  {#if showEntrance}
-    <section>
-      <Entrance on:done={ entranceDone }/>
-    </section>
-  {:else if showContent}
-    <div>
-      <div class="h-screen">
-        <main class="overflow-auto page-height">
-          <div class="divide-y-8 divide-yellow-200">
-            <div id="home">
-              <Home/>
-            </div>
-          </div>
-        </main>
-      </div>
+<div class="absolute top-2 w-full transition-all z-50 shadow-lg sm:left-10 sm:w-auto p-4">
+  {#if invitationName}
+    <div in:slide={{ duration: 1000 }} class="ff-body text-shadow bg-red-100 bg-opacity-10 text-center">
+      <p>
+        <span class="text-sm">Special Invitation for</span> <span class="text-2xl font-bold">{ invitationName }</span>
+      </p>
     </div>
-    <button
-      class="fixed bottom-[80px] left-2 bg-blue-200 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded inline-flex items-center"
-      style={ muted && 'color: #fff; background: rgb(55, 65, 81)' }
-      on:click={ toggleMusic }>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
-        <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
-        <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
-        <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
-      </svg>
-    </button>
+  {:else if invited === false}
+    Maaf, alamat undangan Anda tidak valid. Harap kembali menghubungi kontak yang mengirimkan link ini untuk konfirmasi.
   {/if}
 </div>
+{#if showEntrance}
+  <section class="h-full">
+    <Entrance on:done={ entranceDone }/>
+  </section>
+{:else if showContent}
+  <div class="h-full">
+    <main class="overflow-auto page-height">
+      <div class="divide-y-8 divide-yellow-200">
+        <div id="home">
+          <Home/>
+        </div>
+      </div>
+    </main>
+  </div>
+  <button
+    class="fixed bottom-[80px] left-2 bg-red-200 hover:bg-red-100 text-gray-800 py-2 px-4 rounded inline-flex items-center"
+    style={ muted && 'color: #fff; background: rgb(55, 65, 81)' }
+    on:click={ toggleMusic }>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
+      <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+      <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+      <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+    </svg>
+  </button>
+{/if}
 <style global lang="postcss">
 @font-face {
   font-family: "Main";
@@ -191,8 +188,8 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100vh;
+  height: -webkit-fill-available;
 }
 
 nav {

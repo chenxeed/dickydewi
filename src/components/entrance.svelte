@@ -62,7 +62,7 @@ function openInvitation () {
         in:fade={{ duration: 1000, delay: 1000 }} id="entranceImage" class="max-h-screen shadow-lg"
         on:click={ openInvitation } />
       <div
-        in:slide={{ duration: 1000, delay: 3000 }} class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        in:slide={{ duration: 1000, delay: 3000 }} class="absolute bottom-10 left-1/2 transform -translate-x-1/2 sm:bottom-52">
         {#if open === false}
         <button
           class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
