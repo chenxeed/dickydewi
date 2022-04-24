@@ -95,11 +95,11 @@ onMount(async () => {
   <div class="absolute top-4 left-0 lg:left-28 bg-red-100 transition-all z-50 shadow-lg">
     {#if invitationName}
       <div in:slide={{ duration: 1000 }} class="m-4 ff-body text-shadow">
-        <p>Special Invitation for</p>
+        <p class="text-sm">Special Invitation for</p>
         <p class="text-2xl font-bold">{ invitationName }</p>
       </div>
     {:else if invited === false}
-      Sorry, your invitation URL is not valid.
+      Maaf, alamat undangan Anda tidak valid. Harap kembali menghubungi kontak yang mengirimkan link ini untuk konfirmasi.
     {/if}
   </div>
   {#if showEntrance}
@@ -188,6 +188,11 @@ html {
   height: -webkit-fill-available;
   background: rgb(250,240,243);
   background: linear-gradient(180deg, rgba(250,240,243,1) 0%, rgba(247,225,223,1) 100%);
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 nav {

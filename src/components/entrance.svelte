@@ -52,7 +52,7 @@ function openInvitation () {
 }
 
 </script>
-<div class="entrance w-full h-screen" class:open style="perspective: 500px">
+<div class="entrance w-full h-full" class:open style="perspective: 500px">
   <div
     bind:this={entrance}
     class="entrance-container relative flex items-center justify-center w-full h-full"
@@ -84,12 +84,6 @@ function openInvitation () {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.entrance {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
-}
 
 /* OPEN ANIMATION */
 .entrance.open {
