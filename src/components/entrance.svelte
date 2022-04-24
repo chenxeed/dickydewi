@@ -52,10 +52,10 @@ function openInvitation () {
 }
 
 </script>
-<div class="entrance w-100 h-screen" class:open style="perspective: 500px">
+<div class="entrance w-full h-screen" class:open style="perspective: 500px">
   <div
     bind:this={entrance}
-    class="entrance-container relative flex items-center justify-center w-100 h-screen"
+    class="entrance-container relative flex items-center justify-center w-full h-full"
 		on:transitionend={entranceDone}>
     {#if imageLoaded}
       <div
