@@ -1,15 +1,23 @@
 <script lang="ts">
+import { onMount } from 'svelte';
+
 import detailPhoto from '../assets/detail.png';
 
 let imageLoaded = false
+
+onMount(() => {
+  setTimeout(() => {
+    console.log('hai')
+    imageLoaded = true
+  }, 100)
+})
 </script>
 <div class="relative flex items-center justify-center w-100 h-screen" style="perspective: 500px">
   <img
     class="detail-photo max-h-screen shadow-lg"
     class:hide="{ imageLoaded === false }"
     src={detailPhoto}
-    alt="detail"
-    on:load={ () => imageLoaded = true }/>
+    alt="detail"/>
 </div>
 <style lang="postcss">
 

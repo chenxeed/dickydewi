@@ -49,6 +49,7 @@ function entranceDone(ev: TransitionEvent) {
 
 function openInvitation () {
   open = true
+  dispatch('open')
 }
 
 </script>

@@ -58,11 +58,14 @@ function runConfetti () {
   }());
 }
 
-function entranceDone () {
-  showEntrance = false
-  showContent = true
+function entranceOpen () {
   audio.pause()
   audio.play()
+}
+
+function entranceDone () {
+  showContent = true
+  showEntrance = false
   runConfetti()
 }
 
@@ -91,23 +94,26 @@ onMount(async () => {
 })
 
 </script>
-<div class="absolute top-2 w-full transition-all z-50 shadow-lg sm:left-10 sm:w-auto p-4">
+<div class="absolute top-2 w-full transition-all z-50 shadow-md sm:left-10 sm:w-auto p-4 bg-red-800 text-red-800 sm:text-red-200 bg-opacity-10 sm:bg-opacity-100">
   {#if invitationName}
-    <div in:slide={{ duration: 1000 }} class="ff-body text-shadow bg-red-100 bg-opacity-10 text-center">
+    <div in:slide={{ duration: 1000 }} class="ff-body text-shadow text-center">
       <p>
         <span class="text-sm">Special Invitation for</span> <span class="text-2xl font-bold">{ invitationName }</span>
       </p>
     </div>
   {:else if invited === false}
     Maaf, alamat undangan Anda tidak valid. Harap kembali menghubungi kontak yang mengirimkan link ini untuk konfirmasi.
+  {:else}
+    Loading, please wait...
   {/if}
 </div>
 {#if showEntrance}
-  <section class="h-full">
-    <Entrance on:done={ entranceDone }/>
+  <section class="h-full w-full absolute top-0 left-0">
+    <Entrance on:open={ entranceOpen } on:done={ entranceDone }/>
   </section>
-{:else if showContent}
-  <div class="h-full">
+{/if}
+{#if showContent}
+  <section class="h-full w-full absolute top-0 left-0">
     <main class="overflow-auto page-height">
       <div class="divide-y-8 divide-yellow-200">
         <div id="home">
@@ -115,7 +121,7 @@ onMount(async () => {
         </div>
       </div>
     </main>
-  </div>
+  </section>
   <button
     class="fixed bottom-[80px] left-2 bg-red-200 hover:bg-red-100 text-gray-800 py-2 px-4 rounded inline-flex items-center"
     style={ muted && 'color: #fff; background: rgb(55, 65, 81)' }
@@ -184,7 +190,21 @@ html {
   scroll-behavior: smooth;
   height: -webkit-fill-available;
   background: rgb(250,240,243);
-  background: linear-gradient(180deg, rgba(250,240,243,1) 0%, rgba(247,225,223,1) 100%);
+  background: radial-gradient(circle, rgba(250,240,243,1) 0%, hsl(5, 100%, 60%) 100%);
+	animation: gradient 5s ease infinite;
+  background-position: center;
+}
+
+@keyframes gradient {
+	0% {
+	  background-size: 200% 200%;
+	}
+	50% {
+	  background-size: 400% 400%;
+	}
+	100% {
+	  background-size: 200% 200%;
+	}
 }
 
 body {
