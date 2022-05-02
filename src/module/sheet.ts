@@ -21,6 +21,18 @@ async function fetchInvitationList () {
 }
 
 export async function authenticate (password: string): Promise<boolean> {
+  if (process.env.NODE_ENV !== 'production') {
+    invitedGuest = {
+      name: 'Test Local',
+      category: '',
+      origin: '',
+      pass: 'justtest',
+      response: '',
+      testimonial: ''
+    }
+    return true
+  }
+
   const invitationList = await fetchInvitationList();
   invitedGuest = undefined
   invitationList.forEach((guest) => {
