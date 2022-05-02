@@ -7,7 +7,6 @@ let imageLoaded = false
 
 onMount(() => {
   setTimeout(() => {
-    console.log('hai')
     imageLoaded = true
   }, 100)
 })

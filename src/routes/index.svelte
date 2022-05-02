@@ -27,7 +27,7 @@ function randomInRange(min, max) {
 }
 
 function runConfetti () {
-  var duration = 15 * 1000;
+  var duration = 10 * 1000;
   var animationEnd = Date.now() + duration;
   var skew = 1;
 
@@ -45,7 +45,7 @@ function runConfetti () {
         // since particles fall down, skew start toward the top
         y: (Math.random() * skew) - 0.2
       },
-      colors: ['#ffffff'],
+      colors: ['#f3b1b1'],
       shapes: ['circle'],
       gravity: randomInRange(0.4, 0.6),
       scalar: randomInRange(0.4, 1),
@@ -94,11 +94,11 @@ onMount(async () => {
 })
 
 </script>
-<div class="absolute top-2 w-full transition-all z-50 shadow-md sm:left-10 sm:w-auto p-4 bg-red-800 text-red-800 sm:text-red-200 bg-opacity-10 sm:bg-opacity-100">
+<div class="absolute top-2 w-full transition-all z-50 sm:shadow-md sm:left-10 sm:w-auto p-4 bg-red-200 text-red-800 bg-opacity-10 ">
   {#if invitationName}
     <div in:slide={{ duration: 1000 }} class="ff-body text-shadow text-center">
       <p>
-        <span class="text-sm">Special Invitation for</span> <span class="text-2xl font-bold">{ invitationName }</span>
+        <span class="text-sm uppercase">Special Invitation for</span><br><span class="text-2xl font-bold">{ invitationName }</span>
       </p>
     </div>
   {:else if invited === false}
@@ -189,22 +189,6 @@ onMount(async () => {
 html {
   scroll-behavior: smooth;
   height: -webkit-fill-available;
-  background: rgb(250,240,243);
-  background: radial-gradient(circle, rgba(250,240,243,1) 0%, hsl(5, 100%, 60%) 100%);
-	animation: gradient 5s ease infinite;
-  background-position: center;
-}
-
-@keyframes gradient {
-	0% {
-	  background-size: 200% 200%;
-	}
-	50% {
-	  background-size: 400% 400%;
-	}
-	100% {
-	  background-size: 200% 200%;
-	}
 }
 
 body {
