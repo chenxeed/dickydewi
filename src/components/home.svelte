@@ -63,7 +63,7 @@ onMount(() => {
   }
 })
 </script>
-<div class="relative flex items-center justify-center w-100 h-screen" style="perspective: 500px">
+<div class="relative flex items-center justify-center w-full h-full" style="perspective: 500px">
   <img
     class="detail-photo max-h-screen shadow-lg"
     class:hide="{ imageLoaded === false }"

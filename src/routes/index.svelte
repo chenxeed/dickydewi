@@ -94,7 +94,7 @@ onMount(async () => {
 })
 
 </script>
-<div class="absolute top-2 w-full transition-all z-50 sm:shadow-md sm:left-10 sm:w-auto p-4 bg-red-200 text-red-800 bg-opacity-10 ">
+<div class="absolute top-2 w-full transition-all z-50 sm:shadow-md sm:left-10 sm:w-auto p-4 bg-red-200 text-red-800 bg-opacity-10">
   {#if invitationName}
     <div in:slide={{ duration: 1000 }} class="ff-body text-shadow text-center">
       <p>
@@ -114,9 +114,9 @@ onMount(async () => {
 {/if}
 {#if showContent}
   <section class="h-full w-full absolute top-0 left-0">
-    <main class="overflow-auto page-height">
-      <div class="divide-y-8 divide-yellow-200">
-        <div id="home">
+    <main class="overflow-auto h-full">
+      <div class="divide-y-8 divide-yellow-200 h-full">
+        <div id="home" class="h-full">
           <Home/>
         </div>
       </div>
@@ -199,14 +199,6 @@ body {
 
 nav {
   height: 70px;
-}
-
-.page-height {
-  height: 100vh;
-}
-
-.page-min-height {
-  min-height: 87vh;
 }
 
 </style>
