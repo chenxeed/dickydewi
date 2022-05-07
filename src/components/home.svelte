@@ -72,7 +72,7 @@ onMount(() => {
   {#if showReservationButton}
   <button
     in:slide
-    class="absolute bottom-2 right-2 bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded sm:bottom-64 sm:left-[70%] sm:transform sm:-translate-x-1/2 sm:w-32"
+    class="absolute bottom-10 right-10 bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded sm:bottom-64 sm:left-[70%] sm:transform sm:-translate-x-1/2 sm:w-32"
     on:click={ () => showReservationForm = true }>
     Reservation
     <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
