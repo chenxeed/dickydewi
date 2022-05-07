@@ -7,6 +7,7 @@ interface Guest {
   pass: string;
   response: string;
   testimonial: string;
+  guestCount: string;
 }
 
 let invitationList: Guest[]
@@ -26,9 +27,10 @@ export async function authenticate (password: string): Promise<boolean> {
       name: 'Test Local',
       category: '',
       origin: '',
-      pass: 'justtest',
+      pass: 'aliana',
       response: '',
-      testimonial: ''
+      testimonial: '',
+      guestCount: ''
     }
     return true
   }
@@ -47,15 +49,15 @@ export async function authenticate (password: string): Promise<boolean> {
   }
 }
 
-export async function updateResponse (response: 'Yes'|'No'): Promise<boolean> {
-  const url = `${SHEETDB_API}/pass/${invitedGuest.pass}`;
-  const body = { data: { response }}
-  return axios.patch(url, body).then(() => true)
+interface Reservation {
+  response: 'Yes'|'No';
+  testimonial: string;
+  guestCount: number;
 }
 
-export async function updateTestimonial (testimonial: string): Promise<boolean> {
+export async function updateReservation (reservation: Reservation): Promise<boolean> {
   const url = `${SHEETDB_API}/pass/${invitedGuest.pass}`;
-  const body = { data: { testimonial }}
+  const body = { data: reservation}
   return axios.patch(url, body).then(() => true)
 }
 
