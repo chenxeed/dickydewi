@@ -13,7 +13,7 @@ interface Guest {
 let invitationList: Guest[]
 let invitedGuest: Guest
 
-const SHEETDB_API = 'https://sheetdb.io/api/v1/md7ki0pkldlpq'
+const SHEETDB_API = 'https://sheetdb.io/api/v1/qnzjjwsx68mkz'
 
 async function fetchInvitationList () {
   const url = SHEETDB_API
