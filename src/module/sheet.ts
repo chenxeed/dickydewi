@@ -24,7 +24,7 @@ async function fetchInvitationList () {
 export async function authenticate (password: string): Promise<boolean> {
   if (process.env.NODE_ENV !== 'production') {
     invitedGuest = {
-      name: 'Test Local',
+      name: 'Mr. & Mrs. Dr. Michael Josef Kridanto Kamadjaja, drg, M.Kes, Sp.Pros',
       category: '',
       origin: '',
       pass: 'aliana',

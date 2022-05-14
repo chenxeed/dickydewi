@@ -94,11 +94,12 @@ onMount(async () => {
 })
 
 </script>
-<div class="absolute top-2 w-full transition-all z-50 sm:shadow-md sm:left-10 sm:w-auto p-4 bg-red-200 text-red-800 bg-opacity-10">
+<div class="absolute top-2 transition-all z-50 sm:shadow-md sm:left-10 sm:w-auto p-4 bg-white text-red-800 bg-opacity-80 border border-gray-700 rounded-md shadow mx-2">
   {#if invitationName}
     <div in:slide={{ duration: 1000 }} class="ff-body text-shadow text-center">
       <p>
-        <span class="text-sm uppercase">Special Invitation for</span><br><span class="text-2xl font-bold">{ invitationName }</span>
+        <span class="text-sm uppercase">Special Invitation for</span><br>
+        <span class='text-xl font-bold'>{ invitationName }</span>
       </p>
     </div>
   {:else if invited === false}
