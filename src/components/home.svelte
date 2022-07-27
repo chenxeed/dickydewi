@@ -1,162 +1,71 @@
 <script lang="ts">
-import { slide } from 'svelte/transition';
-import { onMount } from 'svelte';
-import { updateReservation, getInvitedGuest } from '../module/sheet';
+import { slide, fade } from 'svelte/transition';
+import { getInvitedGuest } from '../module/sheet';
+import photo1 from '../assets/photo-1.jpg';
+import photo2 from '../assets/photo-2.jpg';
+import ring from '../assets/ring.svg';
+import glass from '../assets/glass.svg';
 
-import detailPhoto from '../assets/detail.png';
+const guest = getInvitedGuest();
 
-let imageLoaded = false
-let showReservationButton = false
-let showReservationForm = false
-let isComing = undefined
-let personComing = 1
-let submitting = false
-let isSubmitted = false
-let testimonial = ''
-const maxPerson = 8
-
-function incrementPersonComing () {
-  if (personComing < maxPerson) {
-    personComing++
-  }
-}
-
-function decrementPersonComing () {
-  if (personComing > 1) {
-    personComing--
-  }
-}
-
-function onChangeTestimonial (e) {
-  const target = e.target as HTMLTextAreaElement
-  testimonial = target.value
-}
-
-
-async function submitReservation () {
-  submitting = true
-  const resp = await updateReservation({
-    guestCount: isComing ? personComing : 0,
-    response: isComing ? 'Yes' : 'No',
-    testimonial
-  })
-  if (resp) {
-    isSubmitted = true
-  }
-  submitting = false
-}
-
-onMount(() => {
-  setTimeout(() => {
-    imageLoaded = true
-  }, 100)
-
-  setTimeout(() => {
-    showReservationButton = true
-  }, 5000)
-
-  const guest = getInvitedGuest()
-  if (guest) {
-    testimonial = guest.testimonial
-    isComing = guest.response === 'Yes' ? true : guest.response === 'No' ? false : undefined
-    personComing = Number(guest.guestCount) || 1
-  }
-})
 </script>
-<div class="relative flex items-center justify-center w-full h-full" style="perspective: 500px">
-  <img
-    class="detail-photo max-h-screen shadow-lg"
-    class:hide="{ imageLoaded === false }"
-    src={detailPhoto}
-    alt="detail"/>
-  {#if showReservationButton}
-  <button
-    in:slide
-    class="absolute bottom-10 right-10 bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded sm:bottom-64 sm:left-[70%] sm:transform sm:-translate-x-1/2 sm:w-32"
-    on:click={ () => showReservationForm = true }>
-    Reservation
-    <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
-    </span>
-  </button>
-  {/if}
-  {#if showReservationForm}
+
+<div
+  class="relative page-min-height flex flex-col max-w-lg m-auto lg:max-w-none overflow-hidden justify-around lg:justify-evenly">
   <div
-    transition:slide
-    class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-2 w-full max-w-sm">
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8">
-      {#if !isSubmitted}
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-            Are you able to attend?
-          </label>
-          <div class="flex justify-around">
-            <button on:click={() => isComing = true} type="button" class="bg-white py-2 px-3 border w-20 border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" class:bg-green-200={isComing === true}>Yes</button>
-            <button on:click={() => isComing = false} type="button" class="bg-white py-2 px-3 border w-20 border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" class:bg-gray-500={isComing === false}>No</button>
-          </div>
-        </div>
-        {#if isComing === true}
-          <div transition:slide class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-              How many person are coming?
-            </label>
-            <div class="flex justify-between">
-              <button on:click={decrementPersonComing} type="button" class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">-</button>
-              <input
-                class="shadow appearance-none border border-gray-500 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline w-10"
-                type="text" value={ personComing } />
-              <button on:click={incrementPersonComing} type="button" class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">+</button>
-            </div>
-          </div>
-        {/if}
-        {#if isComing !== undefined}
-          <div transition:slide class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="testimonial">
-              Testimonial
-            </label>
-            <textarea
-              id="testimonial" rows="3"
-              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 p-2 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Write your wish for Dicky and Dewi here"
-              on:change={ onChangeTestimonial }>{ testimonial }</textarea>
-          </div>
-        {/if}
-        <div class="flex items-center justify-between">
-          <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
-            disabled={submitting}
-            on:click={ submitReservation }>
-            { submitting ? 'Sending...' : 'Submit' }
-          </button>
-          <button
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
-            on:click={ () => showReservationForm = false }>
-            Cancel
-          </button>
-        </div>
-      {:else}
-        <p>Thank you for your reservation!</p>
-        <div class="text-center mt-4">
-          <button
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center" type="button"
-            on:click={ () => showReservationForm = false }>
-            Close
-          </button>
-        </div>
+    transition:fade="{{ duration: 3000, delay: 500 }}"
+    class="absolute z-0 w-full h-full shadow-2xl bg-no-repeat bg-left-top bg-auto sm:w-[600px] lg:self-start"
+    style="background-image: url('{photo1}')"/>
+  <div
+    transition:fade="{{ duration: 3000, delay: 500 }}"
+    class="hidden absolute z-0 w-full h-full shadow-2xl bg-no-repeat bg-left-top bg-auto sm:w-[600px] sm:self-end lg:block"
+    style="background-image: url('{photo2}'); transform: scaleX(-1)"/>
+  <p
+    class="relative z-10 text-md text-center text-shadow lg:mt-0"
+    transition:slide="{{ duration: 2000, delay: 1000 }}">You are cordially invited to attend the wedding of</p>
+  <p
+    class="relative z-10 text-5xl text-center ff-main lg:mt-0 text-yellow-600"
+    transition:slide="{{ duration: 2000, delay: 3000 }}">
+      Kelvin and Rita
+  </p>
+  <p
+    class="relative z-10 text-xl px-4 self-start lg:self-center lg:text-center bg-gray-50 bg-opacity-80 p-4 w-60 lg:w-auto"
+    transition:slide="{{ duration: 2000, delay: 5000 }}">
+    {#if guest.category !== 'online'}
+      Saturday, 29 Jan 22,<br>
+      {#if ['semua', 'pemberkatan'].includes(guest.category.toLowerCase())}
+      <div class="w-full border-t-2 border-gray-400 my-1"/>
+      <img src={ ring } alt="ring" class="w-4 inline"/> Holy Matrimony
+      <br/>10.30 - 12.00
+      <br/>
       {/if}
-    </div>
-  </div>
-  {/if}
+      {#if ['semua', 'resepsi'].includes(guest.category.toLowerCase())}
+      <div class="w-full border-t-2 border-gray-400 my-1"/>
+      <img src={ glass } alt="ring" class="w-6 inline"/> Reception Night
+      <br/>18.00 - 20.00
+      <br/>
+      {/if}
+      <div class="w-full border-t-2 border-gray-400 my-1"/>
+      <a href="https://www.google.com/maps?ll=-6.18038,106.724483&z=14&t=m&hl=en&gl=ID&mapclient=embed&cid=9664184628718228892" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill inline" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+          <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+        </svg>
+        <span class="text-lg">HARRIS Suites Puri Mansion, Jakarta Barat</span><br>
+      </a>
+    {:else}
+      Saturday, 29th Jan' 2022,<br>10.30 - 12.00
+      <br/>
+      <a class="text-blue-900" href="https://www.instagram.com/italovestoryofkev/" target="_blank">
+        <span class="text-lg">Instagram Live</span><br>
+        <span class="text-sm">#italovestoryofkev</span>
+      </a>
+    {/if}
+  </p>
+  <p
+    class="relative z-10 text-base italic text-right self-end lg:self-center bg-gray-50 bg-opacity-80 p-4"
+    transition:slide="{{ duration: 2000, delay: 7000 }}">
+    <span>"True love is the joy of life."</span>
+    <br>- John Clarke
+  </p>
 </div>
-<style lang="postcss">
-
-.detail-photo {
-  @apply
-    transition-all ease-in;
-  transition-duration: 1s;
-}
-
-.detail-photo.hide {
-  transform: rotateY(-90deg) scale(0.8);
-}
-</style>
