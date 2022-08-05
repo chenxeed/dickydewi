@@ -3,6 +3,7 @@ import { fade } from 'svelte/transition'
 import Entrance from '../components/entrance.svelte'
 import Home from '../components/home.svelte'
 import Gallery from '../components/gallery.svelte'
+import Join from '../components/join.svelte'
 import song from '../../static/joker-queen.mp3';
 import { Howl } from 'howler';
 
@@ -27,10 +28,6 @@ function scrollTo (targetId: string) {
       })
     }, 500)
   }
-}
-
-function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
 }
 
 function entranceDone () {
@@ -67,9 +64,9 @@ function toggleMusic () {
             <div id="gallery">
               <Gallery/>
             </div>
-            <!-- <div id="join">
+            <div id="join">
               <Join/>
-            </div> -->
+            </div>
             <div class="w-full h-10 text-center text-xs text-yellow-200 bg-gray-600">
               Copyright @ <a href="https://chenxeed.com" target="_blank">chenxeed</a> 2022<br>
               Music by <a href="https://www.youtube.com/watch?v=r5Lr7NC50z0" target="_blank">Joker and the Queen - Ed Sheeran</a>

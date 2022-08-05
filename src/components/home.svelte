@@ -12,6 +12,7 @@ const guest = getInvitedGuest();
 <div
   class="relative page-min-height flex flex-col max-w-lg m-auto lg:max-w-none overflow-hidden justify-around lg:justify-evenly">
   <video
+  in:fade="{{ duration: 2000, delay: 1000 }}"
     autoplay
     loop
     muted

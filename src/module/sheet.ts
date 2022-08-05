@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { dev } from '$app/env';
+// import { dev } from '$app/env';
+const dev = false
 
 interface Guest {
   name: string;
@@ -10,6 +11,7 @@ interface Guest {
   response: string;
   testimonial: string;
   guestCount: number;
+  source: 'public' | 'guest';
 }
 
 interface AuthGuestResponse {
@@ -72,11 +74,12 @@ export async function authenticate (password: string): Promise<boolean> {
     name: data.Name,
     category: data.Category,
     origin: '',
-    phoneNumber: data['Phone Number'],
+    phoneNumber: data['Phone Number'].replace(/"/g, ''),
     pass: data.Password,
     response: data.Response,
     testimonial: data.Testimonial,
-    guestCount: Number(data['Guest Count'])
+    guestCount: Number(data['Guest Count']),
+    source: 'guest'
   }
   return true
 }
@@ -94,11 +97,12 @@ export async function authReservation (password: string): Promise<boolean> {
     name: data.invitationName,
     category: '',
     origin: '',
-    phoneNumber: data.phoneNumber,
+    phoneNumber: data.phoneNumber.replace(/"/g, ''),
     pass: password,
     response: data.response,
     testimonial: data.testimonial,
-    guestCount: data.guestCount
+    guestCount: data.guestCount,
+    source: 'public'
   }
   return true
 }
@@ -109,10 +113,16 @@ export async function updateResponse (response: 'Yes'|'No'): Promise<boolean> {
   return dev ? Promise.resolve(true) : axios.patch(url, body).then(() => true)
 }
 
-export async function updateTestimonial (testimonial: string): Promise<boolean> {
-  const url = `${SHEETDB_API_ONLINE_GUEST}/pass/${invitedGuest.pass}`;
-  const body = { data: { testimonial }}
-  return dev ? Promise.resolve(true) : axios.patch(url, body).then(() => true)
+export async function loadTestimonials (): Promise<{ name: string; testimonial: string }[]> {
+  const { data } = dev
+    ? await Promise.resolve({ data: [] })
+    : await axios.get<AuthGuestResponse[]>(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
+  return data
+    .filter(guest => guest.Testimonial)
+    .map(guest => ({
+      name: guest.Name,
+      testimonial: guest.Testimonial
+    }))
 }
 
 export function getInvitedGuest (): Guest {
@@ -135,14 +145,21 @@ export async function createReservation (reservation: Reservation): Promise<void
     response: reservation.response,
     testimonial: reservation.testimonial,
     guestCount: reservation.guestCount,
-    phoneNumber: reservation.phoneNumber
+    phoneNumber: reservation.phoneNumber,
+    source: 'public'
   }
 }
 
 export async function updateReservation (reservation: Reservation): Promise<void> {
-
-  const url = `${SHEETDB_API_RESERVATION}/reservationPass/${reservation.reservationPass}`;
-  const body = { data: [reservation] }
+  const guestReservation: Partial<AuthGuestResponse> = {
+    "Guest Count": `${reservation.guestCount}`,
+    "Phone Number": reservation.phoneNumber,
+    Response: reservation.response,
+    Testimonial: reservation.testimonial
+  }
+  const reservationData = invitedGuest.source === 'guest' ? guestReservation : reservation
+  const body = { data: [reservationData] }
+  const url = invitedGuest.source === 'guest' ? `${SHEETDB_API_ONLINE_GUEST}/Password/${invitedGuest.pass}` : `${SHEETDB_API_RESERVATION}/reservationPass/${reservation.reservationPass}`;
   if (dev) {
     await Promise.resolve()
   } else {
@@ -156,7 +173,8 @@ export async function updateReservation (reservation: Reservation): Promise<void
     response: reservation.response,
     testimonial: reservation.testimonial,
     guestCount: reservation.guestCount,
-    phoneNumber: reservation.phoneNumber
+    phoneNumber: reservation.phoneNumber,
+    source: 'public'
   }
 }
 
