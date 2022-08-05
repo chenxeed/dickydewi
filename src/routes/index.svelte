@@ -5,7 +5,7 @@ import Entrance from '../components/entrance.svelte'
 import Home from '../components/home.svelte'
 import Story from '../components/story.svelte'
 import Gallery from '../components/gallery.svelte'
-import Join from '../components/join.svelte'
+// import Join from '../components/join.svelte'
 import Gift from '../components/gift.svelte'
 import song from '../../static/its-you-cut.mp3';
 import { Howl } from 'howler';
@@ -106,9 +106,9 @@ function toggleMusic () {
             <div id="gallery">
               <Gallery/>
             </div>
-            <div id="join">
+            <!-- <div id="join">
               <Join/>
-            </div>
+            </div> -->
             <div id="gift">
               <Gift/>
             </div>

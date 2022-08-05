@@ -11,31 +11,50 @@ interface Guest {
   guestCount: number;
 }
 
-let invitationList: Guest[]
-let invitedGuest: Guest
-
-const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/i7qp8w0epae9o'
-const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/9z3dmd8qry979'
-
-async function fetchInvitationList () {
-  const url = SHEETDB_API_ONLINE_GUEST
-  invitationList = await window.fetch(url).then(resp => resp.json());
-  return invitationList;
+interface AuthGuestResponse {
+  Name: string;
+  Category: string;
+  ONLINE: string;
+  Password: string;
+  'Guest Count': string;
+  Response: string;
+  Testimonial: string;
+  'Phone Number': string;
 }
 
+
+interface Reservation {
+  reservationPass: string;
+  response: 'Yes'|'No';
+  testimonial: string;
+  guestCount: number;
+  invitationName: string;
+  phoneNumber: string;
+}
+
+let invitedGuest: Guest
+
+const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/ieqa1l0tcmfqh'
+const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/9z3dmd8qry979'
+
 export async function authenticate (password: string): Promise<boolean> {
-  const invitationList = await fetchInvitationList();
-  invitedGuest = undefined
-  invitationList.forEach((guest) => {
-    if (guest.pass === password) {
-      invitedGuest = guest
-    }
-  })
-  if (invitedGuest) {
-    return true
-  } else {
+  const { data } = await axios.get<AuthGuestResponse>(`${SHEETDB_API_ONLINE_GUEST}/search?Password=${password}&single_object=true`)
+
+  if (!data.Name || !data.ONLINE) {
     return false
   }
+
+  invitedGuest = {
+    name: data.Name,
+    category: data.Category,
+    origin: '',
+    phoneNumber: data['Phone Number'],
+    pass: data.Password,
+    response: data.Response,
+    testimonial: data.Testimonial,
+    guestCount: Number(data['Guest Count'])
+  }
+  return true
 }
 
 export async function authReservation (password: string): Promise<boolean> {
@@ -72,19 +91,6 @@ export async function updateTestimonial (testimonial: string): Promise<boolean> 
 
 export function getInvitedGuest (): Guest {
   return invitedGuest;
-}
-
-export function getInvitationList (): Guest[] {
-  return invitationList;
-}
-
-interface Reservation {
-  reservationPass: string;
-  response: 'Yes'|'No';
-  testimonial: string;
-  guestCount: number;
-  invitationName: string;
-  phoneNumber: string;
 }
 
 export async function createReservation (reservation: Reservation): Promise<void> {

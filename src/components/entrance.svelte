@@ -20,6 +20,7 @@ let pass = ''
 let entrance: HTMLElement;
 
 let reservation = false
+let canReservation = false
 let isComing = null
 let personComing = 1
 let submitting = false
@@ -84,6 +85,7 @@ async function submitReservation () {
       })
       // Help the user to easily revisit their reservation by storing the password
       saveReservationPass(reservationPass)
+      window.history.replaceState(null, '', window.location.href + `?reservation=${reservationPass}`)
     }
     isSubmitted = true
   } finally {
@@ -119,13 +121,11 @@ onMount(async () => {
       if (!URLParam.get('reservation')) {
         window.history.replaceState(null, '', window.location.href + `?reservation=${reservationPass}`)
       }
-      return
     } else {
       reservationPass = ''
     }
   }
-
-  invited = false
+  canReservation = true
   return
 })
 
@@ -143,12 +143,9 @@ function showReservation () {
   reservation = true
 }
 
-function clickSubmit () {
-  if (invitationName && pass) {
-    openInvitation()
-  } else {
-    showReservation()
-  }
+async function copyReservationURL () {
+  await navigator.clipboard.writeText(reservationUrl)
+  window.alert('URL telah disalin')
 }
 
 </script>
@@ -180,17 +177,27 @@ function clickSubmit () {
         <span class="text-3xl">and</span>
         <span class="text-5xl text-yellow-700">Dewi</span>
       </p>
-      {#if !reservation}
+      {#if canReservation && !reservation}
+        <div class="mt-5">
+          <button
+            class="bg-yellow-800 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded w-full transition-all animate-pulse"
+            on:click={ showReservation }
+            in:fly={{ duration: 2000, delay: 1000 }}>
+            {#if invitationName && reservationPass}
+              Ubah Reservasi
+            {:else}
+              Reservasi
+            {/if}
+          </button>
+        </div>
+      {/if}
+      {#if invitationName && !reservation}
         <div class="mt-5">
           <button
             class="bg-yellow-600 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded w-full transition-all animate-pulse"
-            on:click={ clickSubmit }
-            in:fly={{ duration: 2000, delay: 4000 }}>
-            {#if invitationName && pass}
-              Open Invitation
-            {:else}
-              Reservasi
-            {/if }
+            on:click={ openInvitation }
+            in:fly={{ duration: 2000, delay: 1000 }}>
+            Buka Undangan
           </button>
         </div>
       {/if}
@@ -214,6 +221,9 @@ function clickSubmit () {
           </div>
           {/if}
           {#if !isSubmitted}
+            <div class="mb-4 text-center font-bold">
+              <h2>Formulir Reservasi</h2>
+            </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="fullname">
                 Nama Anda *
@@ -243,7 +253,11 @@ function clickSubmit () {
               </label>
               <div class="flex justify-around">
                 <button on:click={() => isComing = true} type="button" class="bg-white py-2 px-3 border w-20 border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" class:bg-green-200={isComing === true}>Ya</button>
-                <button on:click={() => isComing = false} type="button" class="bg-white py-2 px-3 border w-20 border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" class:bg-gray-500={isComing === false}>Tidak</button>
+                <button on:click={() => isComing = false} type="button"
+                  class:bg-gray-500={isComing === false}
+                  class:text-gray-700={isComing !== false}
+                  class:text-white={isComing === false}
+                  class="bg-white py-2 px-3 border w-20 border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Tidak</button>
               </div>
             </div>
             {#if isComing === true}
@@ -268,7 +282,7 @@ function clickSubmit () {
                 <textarea
                   id="testimonial" rows="3"
                   class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 p-2 block w-full sm:text-sm border border-gray-300 rounded-md"
-                  placeholder="Tuliskan ucapan dan doa Anda untuk Dicky & Dewi"
+                  placeholder="Berikan ucapan dan doa Anda untuk Dicky & Dewi"
                   on:change={ onChangeTestimonial }>{ testimonial }</textarea>
               </div>
             {/if}
@@ -278,6 +292,12 @@ function clickSubmit () {
                 disabled={submitting}
                 on:click={ submitReservation }>
                 { submitting ? 'Sending...' : 'Submit' }
+              </button>
+              <button
+                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
+                disabled={submitting}
+                on:click={ () => reservation = false }>
+                Batal
               </button>
             </div>
           {:else}
@@ -306,12 +326,13 @@ function clickSubmit () {
               value={reservationUrl}
               aria-label="reservation URL"
               readonly
+              on:click={copyReservationURL}
             />
             <div class="text-center mt-4">
               <button
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center" type="button"
-                on:click={ () => reservation = false }>
-                Tutup
+                class="bg-yellow-600 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center" type="button"
+                on:click={ openInvitation }>
+                Buka Undangan
               </button>
             </div>
           {/if}
