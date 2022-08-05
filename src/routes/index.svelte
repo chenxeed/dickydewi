@@ -100,7 +100,7 @@ function toggleMusic () {
       </div>
     </div>
     <button
-      class="fixed bottom-[80px] left-2 bg-blue-200 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded inline-flex items-center"
+      class="fixed bottom-[80px] left-2 bg-blue-200 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded inline-flex items-center z-20"
       style={ muted && 'color: #fff; background: rgb(55, 65, 81)' }
       on:click={ toggleMusic }>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
