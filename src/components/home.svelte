@@ -33,9 +33,18 @@ const guest = getInvitedGuest();
     class="relative z-10 text-md text-center text-shadow lg:mt-0 bg-gray-100 bg-opacity-80 p-4"
     transition:slide="{{ duration: 2000, delay: 1000 }}">Dengan penuh hormat, kami mengundang Anda untuk menghadiri acara pernikahan dari</p>
   <p
-    class="relative z-10 text-5xl text-center ff-main lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke"
+    class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke"
     transition:slide="{{ duration: 2000, delay: 3000 }}">
-      Dicky & Dewi
+      <span class="text-3xl ff-main">Dicky</span><br>
+      <span class="text-base">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
+  </p>
+  <p
+  class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke">&</p>
+  <p
+    class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke"
+    transition:slide="{{ duration: 2000, delay: 3000 }}">
+      <span class="text-3xl ff-main">Dewi</span><br>
+      <span class="text-base">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
   </p>
   <div
     class="relative z-10 text-xl px-4 self-start lg:self-center lg:text-center bg-gray-50 bg-opacity-80 p-4 w-60 lg:w-auto"
