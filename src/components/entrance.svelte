@@ -206,7 +206,7 @@ async function copyReservationURL () {
       <div
         transition:slide
         class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-2 w-full max-w-sm">
-        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+        <div class="frame-border">
           {#if alertMessage}
           <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span class="block sm:inline">{ alertMessage }</span>
@@ -301,14 +301,15 @@ async function copyReservationURL () {
               </button>
             </div>
           {:else}
-            <p>Terimakasih atas reservasi Anda!</p>
-            <p>Silahkan simpan URL ini sebagai bukti reservasi Anda:</p>
+            <p class="font-bold">Terimakasih atas reservasi Anda!</p>
+            <p class="mt-2">Silahkan simpan URL dibawah ini sebagai bukti reservasi Anda:</p>
             <input
               type="text"
               class="
                 form-control
                 block
                 w-full
+                mt-2
                 px-3
                 py-1.5
                 text-base
@@ -328,6 +329,7 @@ async function copyReservationURL () {
               readonly
               on:click={copyReservationURL}
             />
+            <p class="mt-2 italic text-sm font-bold">*Tanpa mengurasi rasa hormat, mohon untuk tidak mengirimkan karangan bunga dikarenakan keterbatasan ruangan</p>
             <div class="text-center mt-4">
               <button
                 class="bg-yellow-600 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center" type="button"

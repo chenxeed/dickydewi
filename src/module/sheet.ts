@@ -83,7 +83,7 @@ export async function authenticate (password: string): Promise<boolean> {
 
 export async function authReservation (password: string): Promise<boolean> {
   const { data } = dev ?
-  await Promise.resolve<{ data: Reservation }>({ data: fakeReservation }) :
+    await Promise.resolve<{ data: Reservation }>({ data: fakeReservation }) :
     await axios.get<Reservation>(`${SHEETDB_API_RESERVATION}/search?reservationPass=${password}&single_object=true`)
 
   if (!data.invitationName) {
@@ -106,13 +106,13 @@ export async function authReservation (password: string): Promise<boolean> {
 export async function updateResponse (response: 'Yes'|'No'): Promise<boolean> {
   const url = `${SHEETDB_API_ONLINE_GUEST}/pass/${invitedGuest.pass}`;
   const body = { data: { response }}
-  return axios.patch(url, body).then(() => true)
+  return dev ? Promise.resolve(true) : axios.patch(url, body).then(() => true)
 }
 
 export async function updateTestimonial (testimonial: string): Promise<boolean> {
   const url = `${SHEETDB_API_ONLINE_GUEST}/pass/${invitedGuest.pass}`;
   const body = { data: { testimonial }}
-  return axios.patch(url, body).then(() => true)
+  return dev ? Promise.resolve(true) : axios.patch(url, body).then(() => true)
 }
 
 export function getInvitedGuest (): Guest {
@@ -122,7 +122,11 @@ export function getInvitedGuest (): Guest {
 export async function createReservation (reservation: Reservation): Promise<void> {
   const url = `${SHEETDB_API_RESERVATION}`;
   const body = { data: [reservation] }
-  await axios.post(url, body).then(() => true)
+  if (dev) {
+    await Promise.resolve()
+  } else {
+    await axios.post(url, body).then(() => true)
+  }
   invitedGuest = {
     name: reservation.invitationName,
     category: '',
@@ -136,9 +140,14 @@ export async function createReservation (reservation: Reservation): Promise<void
 }
 
 export async function updateReservation (reservation: Reservation): Promise<void> {
+
   const url = `${SHEETDB_API_RESERVATION}/reservationPass/${reservation.reservationPass}`;
   const body = { data: [reservation] }
-  await axios.patch(url, body).then(() => true)
+  if (dev) {
+    await Promise.resolve()
+  } else {
+    await axios.patch(url, body).then(() => true)
+  }
   invitedGuest = {
     name: reservation.invitationName,
     category: '',
