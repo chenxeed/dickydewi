@@ -35,21 +35,15 @@ const guest = getInvitedGuest();
   <p
     class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke"
     transition:slide="{{ duration: 2000, delay: 3000 }}">
-      <span class="text-3xl ff-main">Dicky</span><br>
-      <span class="text-base">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
-  </p>
-  <p
-  class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke">&</p>
-  <p
-    class="relative z-10 text-center lg:mt-0 text-yellow-200 p-2 rounded-sm text-stroke"
-    transition:slide="{{ duration: 2000, delay: 3000 }}">
-      <span class="text-3xl ff-main">Dewi</span><br>
+      <span class="text-3xl ff-main">Dicky Kusumohardjo</span><br>
+      <span class="text-base">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span><br>
+      &<br>
+      <span class="text-3xl ff-main">Dewi Suryani Halim</span><br>
       <span class="text-base">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
-  </p>
   <div
     class="relative z-10 text-xl px-4 self-start lg:self-center lg:text-center bg-gray-50 bg-opacity-80 p-4 w-60 lg:w-auto"
     transition:slide="{{ duration: 2000, delay: 5000 }}">
-    Saturday, 29 Jan 22,<br>
+    Minggu, 18 Sep 22<br>
     <div class="w-full border-t-2 border-gray-400 my-1"/>
     <img src={ glass } alt="ring" class="w-4 inline"/> Resepsi Pernikahan
     <br/>17.30
@@ -66,7 +60,7 @@ const guest = getInvitedGuest();
   <p
     class="relative z-10 text-base italic text-right self-end lg:self-center bg-gray-50 bg-opacity-80 p-4"
     transition:slide="{{ duration: 2000, delay: 7000 }}">
-    <span>"True love is the joy of life."</span>
-    <br>- John Clarke
+    <span class="text-sm">"Kebahagiaan duniawi terbesar yang dapat dialami atau dirasakan manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."</span>
+    <br>Sutta Pitaka - Digha Nikaya
   </p>
 </div>

@@ -71,7 +71,7 @@ function toggleMusic () {
               <Join/>
             </div> -->
             <div class="w-full h-10 text-center text-xs text-yellow-200 bg-gray-600">
-              Copyright @ <a href="chenxeed.com" target="_blank">chenxeed</a> 2022<br>
+              Copyright @ <a href="https://chenxeed.com" target="_blank">chenxeed</a> 2022<br>
               Music by <a href="https://www.youtube.com/watch?v=r5Lr7NC50z0" target="_blank">Joker and the Queen - Ed Sheeran</a>
             </div>
             <div class="h-[70px]"/>
@@ -166,7 +166,7 @@ function toggleMusic () {
     }
 
     .text-stroke {
-      -webkit-text-stroke: 1px #725f1a;
+      -webkit-text-stroke: 0.5px #725f1a;
     }
 
     .frame-border {
