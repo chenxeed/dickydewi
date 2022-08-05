@@ -157,7 +157,7 @@ async function copyReservationURL () {
     <img src={flowerFrameTop} alt="flower-frame-top" class="absolute top-0 right-0"/>
     <img src={flowerFrameBottom} alt="flower-frame-bottom" class="absolute bottom-0 left-0"/>
     <div class="p-8 h-full w-3/4">
-      <img src={dickyDewiEntrance} alt="flower-frame-bottom" class="h-full object-cover" style="object-position: 65% 0"/>
+      <img src={dickyDewiEntrance} alt="flower-frame-bottom" class="h-full object-cover" style="object-position: 50% 0"/>
     </div>
     {#if invitationName}
       <div class="absolute top-4 left-0 bg-yellow-300 p-4 transition-all" transition:fly>
@@ -173,8 +173,8 @@ async function copyReservationURL () {
       </div>
       <p class="mt-5 text-right bg-opacity-50 bg-white p-2 rounded" in:fly={{ duration: 2000, delay: 2000 }}>for the wedding of</p>
       <p class="mt-5 text-right ff-main bg-opacity-50 bg-white p-2 rounded" in:fly={{ duration: 2000, delay: 3000 }}>
-        <span class="text-5xl text-yellow-700">Dicky</span>
-        <span class="text-3xl">and</span>
+        <span class="text-5xl text-yellow-700">Dicky</span><br>
+        <span class="text-3xl text-yellow-700">&</span>
         <span class="text-5xl text-yellow-700">Dewi</span>
       </p>
       {#if canReservation && !reservation}

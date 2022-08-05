@@ -1,21 +1,19 @@
 <script lang="ts">
 import { fade } from 'svelte/transition'
-import confetti from 'canvas-confetti';
 import Entrance from '../components/entrance.svelte'
 import Home from '../components/home.svelte'
-import Story from '../components/story.svelte'
 import Gallery from '../components/gallery.svelte'
 // import Join from '../components/join.svelte'
 import Gift from '../components/gift.svelte'
-import song from '../../static/its-you-cut.mp3';
+import song from '../../static/joker-queen.mp3';
 import { Howl } from 'howler';
 
 let showEntrance = true
 const audio = new Howl({
   src: [song],
-  html5: true,
   volume: 0.5,
-  loop: true
+  loop: true,
+  autoplay: false
 });
 let muted = false
 
@@ -37,52 +35,21 @@ function randomInRange(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function runConfetti () {
-  var duration = 15 * 1000;
-  var animationEnd = Date.now() + duration;
-  var skew = 1;
-
-  (function frame() {
-    var timeLeft = animationEnd - Date.now();
-    var ticks = Math.max(200, 500 * (timeLeft / duration));
-    skew = Math.max(0.8, skew - 0.001);
-
-    confetti({
-      particleCount: 1,
-      startVelocity: 0,
-      ticks: ticks,
-      origin: {
-        x: Math.random(),
-        // since particles fall down, skew start toward the top
-        y: (Math.random() * skew) - 0.2
-      },
-      colors: ['#ffffff'],
-      shapes: ['circle'],
-      gravity: randomInRange(0.4, 0.6),
-      scalar: randomInRange(0.4, 1),
-      drift: randomInRange(-0.4, 0.4)
-    });
-
-    if (timeLeft > 0) {
-      requestAnimationFrame(frame);
-    }
-  }());
-}
-
 function entranceDone () {
   showEntrance = false
-  audio.pause()
-  audio.play()
+  setTimeout(() => {
+    audio.play()
+  }, 2000)
 }
 
 function toggleMusic () {
-  if (muted === false) {
-    audio.pause()
-    muted = true
-  } else {
-    audio.play()
-    muted = false
-  }
+  // if (muted === false) {
+  //   audio.pause()
+  //   muted = true
+  // } else {
+  //   audio.play()
+  //   muted = false
+  // }
 }
 
 </script>
@@ -92,16 +59,12 @@ function toggleMusic () {
       <Entrance on:done={ entranceDone }/>
     </section>
   {:else}
-    <div in:fade
-      on:introend={ runConfetti }>
+    <div in:fade>
       <div class="h-screen">
         <main class="overflow-auto page-height">
           <div class="divide-y-8 divide-yellow-200">
             <div id="home">
               <Home/>
-            </div>
-            <div id="story">
-              <Story/>
             </div>
             <div id="gallery">
               <Gallery/>
@@ -125,13 +88,6 @@ function toggleMusic () {
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
             Home
-          </a>
-          <div class="border-l-2 border-gray-500 w-1 h-full"></div>
-          <a class="flex flex-col items-center" href="#story" on:click|preventDefault={() => scrollTo('story')}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-            </svg>
-            Story
           </a>
           <div class="border-l-2 border-gray-500 w-1 h-full"></div>
           <a class="flex flex-col items-center" href="#gallery" on:click|preventDefault={() => scrollTo('gallery')}>
@@ -173,7 +129,7 @@ function toggleMusic () {
 <style global lang="postcss">
 @font-face {
   font-family: "Main";
-  src: url("/fonts/CreamCandy.otf");
+  src: url("/fonts/DancingScript-Regular.ttf");
   font-display: block;
 }
 
@@ -219,6 +175,10 @@ function toggleMusic () {
 
     .text-shadow-none {
       text-shadow: none;
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px #725f1a;
     }
   }
 }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { dev } from '$app/env';
 
 interface Guest {
   name: string;
@@ -37,8 +38,31 @@ let invitedGuest: Guest
 const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/ieqa1l0tcmfqh'
 const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/9z3dmd8qry979'
 
+const fakeReservation: Reservation = {
+  invitationName: 'Test Ajah',
+  guestCount: 5,
+  phoneNumber: '0123456789',
+  reservationPass: '12345',
+  response: 'Yes',
+  testimonial: 'sehat selalu'
+}
+
+const fakeGuest: AuthGuestResponse = {
+  Name: 'Test Guest',
+  "Guest Count": "5",
+  "Phone Number": "081237123612",
+  Category: "well..",
+  ONLINE: "ONLINE",
+  "Password": "12345",
+  Response: "Yes",
+  "Testimonial": "Sehat selalu"
+}
+
 export async function authenticate (password: string): Promise<boolean> {
-  const { data } = await axios.get<AuthGuestResponse>(`${SHEETDB_API_ONLINE_GUEST}/search?Password=${password}&single_object=true`)
+
+  const { data } = dev ?
+    await Promise.resolve<{ data: AuthGuestResponse }>({ data: fakeGuest }) :
+    await axios.get<AuthGuestResponse>(`${SHEETDB_API_ONLINE_GUEST}/search?Password=${password}&single_object=true`)
 
   if (!data.Name || !data.ONLINE) {
     return false
@@ -58,7 +82,9 @@ export async function authenticate (password: string): Promise<boolean> {
 }
 
 export async function authReservation (password: string): Promise<boolean> {
-  const { data } = await axios.get<Reservation>(`${SHEETDB_API_RESERVATION}/search?reservationPass=${password}&single_object=true`)
+  const { data } = dev ?
+  await Promise.resolve<{ data: Reservation }>({ data: fakeReservation }) :
+    await axios.get<Reservation>(`${SHEETDB_API_RESERVATION}/search?reservationPass=${password}&single_object=true`)
 
   if (!data.invitationName) {
     return false

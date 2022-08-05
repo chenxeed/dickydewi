@@ -3,18 +3,18 @@ import { fade } from 'svelte/transition';
 import { viewport } from '../helper/useViewport'
 import Gallery from 'svelte-image-gallery'
 import { onDestroy, onMount } from 'svelte';
-import gallery1 from '../assets/gallery/1.jpeg';
-import gallery2 from '../assets/gallery/2.jpeg';
-import gallery3 from '../assets/gallery/3.jpeg';
-import gallery4 from '../assets/gallery/4.jpeg';
-import gallery5 from '../assets/gallery/5.jpeg';
-import gallery6 from '../assets/gallery/6.jpeg';
-import gallery7 from '../assets/gallery/7.jpeg';
-import gallery8 from '../assets/gallery/8.jpeg';
-import gallery9 from '../assets/gallery/9.jpeg';
-import gallery10 from '../assets/gallery/10.jpeg';
-import gallery11 from '../assets/gallery/11.jpeg';
-import gallery12 from '../assets/gallery/12.jpeg';
+import gallery1 from '../assets/gallery/1.jpg';
+import gallery2 from '../assets/gallery/2.jpg';
+import gallery3 from '../assets/gallery/3.jpg';
+import gallery4 from '../assets/gallery/4.jpg';
+import gallery5 from '../assets/gallery/5.jpg';
+import gallery6 from '../assets/gallery/6.jpg';
+import gallery7 from '../assets/gallery/7.jpg';
+import gallery8 from '../assets/gallery/8.jpg';
+import gallery9 from '../assets/gallery/9.jpg';
+import gallery10 from '../assets/gallery/10.jpg';
+import gallery11 from '../assets/gallery/11.jpg';
+import gallery12 from '../assets/gallery/12.jpg';
 
 let showTitle = false;
 let windowSize = document.body.clientWidth;
