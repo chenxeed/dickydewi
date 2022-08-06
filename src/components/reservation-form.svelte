@@ -31,6 +31,7 @@ onMount(() => {
     testimonial = guest.testimonial
     personComing = guest.guestCount
     isGuest = guest.source === 'guest'
+    reservationPass = guest.pass
   }
 })
 
