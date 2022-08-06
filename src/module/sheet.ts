@@ -129,8 +129,12 @@ export function getInvitedGuest (): Guest {
 }
 
 export async function createReservation (reservation: Reservation): Promise<void> {
+  const publicReservation: Reservation = {
+    ...reservation,
+    phoneNumber: `"${reservation.phoneNumber}"`
+  }
   const url = `${SHEETDB_API_RESERVATION}`;
-  const body = { data: [reservation] }
+  const body = { data: [publicReservation] }
   if (dev) {
     await Promise.resolve()
   } else {
@@ -152,11 +156,15 @@ export async function createReservation (reservation: Reservation): Promise<void
 export async function updateReservation (reservation: Reservation): Promise<void> {
   const guestReservation: Partial<AuthGuestResponse> = {
     "Guest Count": `${reservation.guestCount}`,
-    "Phone Number": reservation.phoneNumber,
+    "Phone Number": `"${reservation.phoneNumber}"`,
     Response: reservation.response,
     Testimonial: reservation.testimonial
   }
-  const reservationData = invitedGuest.source === 'guest' ? guestReservation : reservation
+  const publicReservation: Reservation = {
+    ...reservation,
+    phoneNumber: `"${reservation.phoneNumber}"`
+  }
+  const reservationData = invitedGuest.source === 'guest' ? guestReservation : publicReservation
   const body = { data: [reservationData] }
   const url = invitedGuest.source === 'guest' ? `${SHEETDB_API_ONLINE_GUEST}/Password/${invitedGuest.pass}` : `${SHEETDB_API_RESERVATION}/reservationPass/${reservation.reservationPass}`;
   if (dev) {

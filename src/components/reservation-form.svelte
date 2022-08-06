@@ -77,7 +77,7 @@ async function submitReservation () {
         response: isComing ? 'Yes' : 'No',
         testimonial: encodeHTML(testimonial),
         invitationName,
-        phoneNumber: `"${phoneNumber}"`
+        phoneNumber: `${phoneNumber}`
       })
     } else {
       reservationPass = `${Math.round(Math.random() * 100000000)}`
@@ -87,7 +87,7 @@ async function submitReservation () {
         response: isComing ? 'Yes' : 'No',
         testimonial: encodeHTML(testimonial),
         invitationName,
-        phoneNumber: `"${phoneNumber}"`
+        phoneNumber: `${phoneNumber}`
       })
     }
     isSubmitted = true
