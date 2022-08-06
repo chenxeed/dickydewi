@@ -75,10 +75,13 @@ function showReservation () {
 }
 
 function reservationFormSubmitted () {
+  const reservedGuest = getInvitedGuest()
+  invitationName = reservedGuest.name
+  isComing = reservedGuest.response === 'Yes' ? true : reservedGuest.response === 'No' ? false : null
   if (isGuest === false) {
     // Help the user to easily revisit their reservation by storing the password
-    saveReservationPass(reservationPass)
-    window.history.replaceState(null, '', window.location.href + `?reservation=${reservationPass}`)
+    saveReservationPass(reservedGuest.pass)
+    window.history.replaceState(null, '', window.location.href + `?reservation=${reservedGuest.pass}`)
   }
 }
 
