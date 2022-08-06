@@ -138,6 +138,7 @@ function reservationFormSubmitted () {
     </div>
     {#if reservation}
       <ReservationForm
+        canOpenInvitation
         on:submitted={ reservationFormSubmitted }
         on:close={ () => reservation = false }
         on:open-invitation={ openInvitation }/>
