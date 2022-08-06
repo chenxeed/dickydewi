@@ -10,7 +10,7 @@ import { Howl } from 'howler';
 let showEntrance = true
 const audio = new Howl({
   src: [song],
-  volume: 0.5,
+  volume: 0,
   loop: true,
   autoplay: false
 });
@@ -33,8 +33,16 @@ function scrollTo (targetId: string) {
 function entranceDone () {
   showEntrance = false
   setTimeout(() => {
+    audio.volume(0)
     audio.play()
-  }, 2000)
+    setTimeout(() => {
+      toggleMusic()
+      setTimeout(() => {
+        audio.volume(0.5)
+        toggleMusic()
+      }, 1)
+    }, 1)
+  }, 1000)
 }
 
 function toggleMusic () {
