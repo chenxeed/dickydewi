@@ -1,6 +1,6 @@
 <script lang="ts">
 import { fade } from 'svelte/transition';
-import { loadTestimonials } from '../module/sheet';
+import { loadTestimonials, getInvitedGuest } from '../module/sheet';
 import rsvp from '../assets/rsvp.png';
 import covid from '../assets/covid-protocol.jpeg';
 import { onMount } from 'svelte';
@@ -12,6 +12,13 @@ let showReservation = false;
 
 $: testimonialPagination = testimonials.slice(0, testiPage * 5);
 $: showLoadMore = testimonials.length > testiPage * 5;
+
+function appendTestimonial () {
+  // Remove the current testimonial if exist
+  const guest = getInvitedGuest()
+  testimonials = testimonials.filter(testi => testi.name !== guest.name)
+  testimonials.unshift({ name: guest.name, testimonial: guest.testimonial })
+}
 
 onMount(async function () {
   testimonials = await loadTestimonials()
@@ -26,7 +33,7 @@ function increaseTestiPage () {
   class="page-min-height flex flex-col items-center justify-evenly px-2 bg-yellow-100 md:w-[768px] mx-auto">
   <img src={ rsvp } alt="rsvp" class="w-64 my-10 animate-pulse" on:click={ () => showReservation = true }/>
   {#if showReservation}
-    <ReservationForm on:close={ () => showReservation = false }/>
+    <ReservationForm on:close={ () => showReservation = false } on:submitted={ appendTestimonial }/>
   {/if}
   <p
     in:fade="{{ duration: 2000, delay: 1000 }}" out:fade

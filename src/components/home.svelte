@@ -13,10 +13,8 @@ const guest = getInvitedGuest();
 <div
   class="relative page-min-height flex flex-col max-w-lg m-auto lg:max-w-none overflow-hidden justify-around lg:justify-evenly">
   <video
-  in:fade="{{ duration: 2000, delay: 1000 }}"
-    autoplay
-    loop
-    muted
+    in:fade="{{ duration: 2000, delay: 1000 }}"
+    data-autoplay="" autoplay webkit-playsinline="" playsinline loop muted data-object-fit="cover"
     class="absolute z-10 w-auto min-w-full min-h-full max-w-none">
     <source src={videoPortraitMp4} type="video/mp4" />
     <source src={videoPortraitWebm} type="video/webm" />
