@@ -24,12 +24,14 @@ $: reservationUrl = `https://dickydewiwedding.site/?reservation=${reservationPas
 
 onMount(() => {
   const guest = getInvitedGuest();
-  invitationName = guest.name;
-  phoneNumber = guest.phoneNumber
-  isComing = guest.response === 'Yes'
-  testimonial = guest.testimonial
-  personComing = guest.guestCount
-  isGuest = guest.source === 'guest'
+  if (guest) {
+    invitationName = guest.name;
+    phoneNumber = guest.phoneNumber
+    isComing = guest.response === 'Yes'
+    testimonial = guest.testimonial
+    personComing = guest.guestCount
+    isGuest = guest.source === 'guest'
+  }
 })
 
 function incrementPersonComing () {
@@ -105,10 +107,10 @@ function encodeHTML(s) {
   <div class="frame-border">
     {#if alertMessage}
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-      <span class="block sm:inline">{ alertMessage }</span>
+      <span class="block sm:inline text-sm">{ alertMessage }</span>
       <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
         <svg
-          class="fill-current h-6 w-6 text-red-500"
+          class="fill-current h-6 w-6 text-red-500 absolute top-1 right-1"
           role="button"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
