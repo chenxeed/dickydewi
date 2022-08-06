@@ -15,6 +15,7 @@ const audio = new Howl({
   autoplay: false
 });
 let muted = false
+let joinComponent
 
 function scrollTo (targetId: string) {
   const target = document.getElementById(targetId)
@@ -28,6 +29,10 @@ function scrollTo (targetId: string) {
       })
     }, 500)
   }
+}
+
+function openRSVP () {
+  joinComponent.openRSVP()
 }
 
 function entranceDone () {
@@ -73,7 +78,7 @@ function toggleMusic () {
               <Gallery/>
             </div>
             <div id="join">
-              <Join/>
+              <Join bind:this={joinComponent}/>
             </div>
             <div class="w-full h-10 text-center text-xs text-yellow-200 bg-gray-600">
               Copyright @ <a href="https://chenxeed.com" target="_blank">chenxeed</a> 2022<br>
@@ -97,7 +102,7 @@ function toggleMusic () {
             Gallery
           </a>
           <div class="border-l-2 border-gray-500 w-1 h-full"></div>
-          <a class="flex flex-col items-center" href="#join" on:click|preventDefault={() => scrollTo('join')}>
+          <a class="flex flex-col items-center" href="#join" on:click|preventDefault={() => { scrollTo('join'); openRSVP() } }>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
               <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />

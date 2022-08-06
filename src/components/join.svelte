@@ -20,6 +20,10 @@ function appendTestimonial () {
   testimonials.unshift({ name: guest.name, testimonial: guest.testimonial })
 }
 
+export function openRSVP () {
+  showReservation = true
+}
+
 onMount(async function () {
   testimonials = await loadTestimonials()
 })
@@ -31,7 +35,7 @@ function increaseTestiPage () {
 </script>
 <div
   class="page-min-height flex flex-col items-center justify-evenly px-2 bg-yellow-100 md:w-[768px] mx-auto">
-  <img src={ rsvp } alt="rsvp" class="w-64 my-10 animate-pulse" on:click={ () => showReservation = true }/>
+  <img src={ rsvp } alt="rsvp" class="w-64 my-10 animate-pulse cursor-pointer" on:click={ () => showReservation = true }/>
   {#if showReservation}
     <ReservationForm on:close={ () => showReservation = false } on:submitted={ appendTestimonial }/>
   {/if}

@@ -1,6 +1,5 @@
 import axios from 'axios';
-// import { dev } from '$app/env';
-const dev = false
+import { dev } from '$app/env';
 
 interface Guest {
   name: string;
