@@ -97,9 +97,14 @@ function reservationFormSubmitted () {
       <img src={dickyDewiEntrance} alt="flower-frame-bottom" class="h-full object-cover" style="object-position: 50% 0"/>
     </div>
     {#if invitationName}
-      <div class="absolute top-4 left-0 bg-yellow-300 p-4 transition-all" transition:fly>
-        <p>Special Invitation for</p>
-        <p class="text-2xl font-bold">{ invitationName }</p>
+      <div class="absolute top-4 left-0 bg-yellow-300 transition-all" transition:fly>
+        <div class="p-4">
+          <p>Special Invitation for</p>
+          <p class="text-xl font-bold">
+            { invitationName }
+          </p>
+        </div>
+        <div style="font-size: 8px" class="pb-1 px-1">Kami mohon maaf jika ada kesalahan pada nama atau gelar</div>
       </div>
     {/if}
     <div class="absolute right-4 top-0 mt-56 w-60 flex flex-col items-end">
