@@ -3,7 +3,8 @@ import { slide, fade } from 'svelte/transition';
 import { getInvitedGuest } from '../module/sheet';
 import photo1 from '../assets/photo-1.jpg';
 import photo2 from '../assets/photo-2.jpg';
-import videoPortrait from '../assets/bg-portrait.webm';
+import videoPortraitMp4 from '../assets/bg-portrait.mp4';
+import videoPortraitWebm from '../assets/bg-portrait.webm';
 import glass from '../assets/glass.svg';
 
 const guest = getInvitedGuest();
@@ -17,10 +18,8 @@ const guest = getInvitedGuest();
     loop
     muted
     class="absolute z-10 w-auto min-w-full min-h-full max-w-none">
-    <source
-      src={videoPortrait}
-      type="video/webm"
-    />
+    <source src={videoPortraitMp4} type="video/mp4" />
+    <source src={videoPortraitWebm} type="video/webm" />
     <div
       transition:fade="{{ duration: 3000, delay: 500 }}"
       class="absolute z-0 w-full h-full shadow-2xl bg-no-repeat bg-left-top bg-auto sm:w-[600px] lg:self-start"
