@@ -139,6 +139,7 @@ function encodeHTML(s) {
           id="fullname"
           type="text"
           placeholder="Nama Anda"
+          readonly={isGuest}
           bind:value={invitationName}>
       </div>
       <div class="mb-4">
