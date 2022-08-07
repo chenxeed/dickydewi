@@ -114,7 +114,7 @@ export async function updateResponse (response: 'Yes'|'No'): Promise<boolean> {
 
 export async function loadTestimonials (): Promise<{ name: string; testimonial: string }[]> {
   const { data } = dev
-    ? await Promise.resolve({ data: [] })
+    ? await Promise.resolve({ data: [fakeGuest] })
     : await axios.get<AuthGuestResponse[]>(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
   return data
     .filter(guest => guest.Testimonial)

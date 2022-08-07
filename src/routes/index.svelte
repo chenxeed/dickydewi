@@ -12,7 +12,8 @@ const audio = new Howl({
   src: [song],
   volume: 0,
   loop: true,
-  autoplay: false
+  autoplay: false,
+  preload: true
 });
 let muted = false
 let joinComponent
@@ -45,8 +46,8 @@ function entranceDone () {
       setTimeout(() => {
         audio.volume(0.5)
         toggleMusic()
-      }, 1)
-    }, 1)
+      }, 100)
+    }, 100)
   }, 1000)
 }
 
@@ -109,6 +110,14 @@ function toggleMusic () {
             </svg>
             RSVP
           </a>
+          <div class="border-l-2 border-gray-500 w-1 h-full"></div>
+          <a class="flex flex-col items-center" href="#join" on:click|preventDefault={() => { scrollTo('join'); } }>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+              <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+            </svg>
+            Testimonial
+          </a>
         </nav>
       </div>
     </div>
@@ -116,11 +125,17 @@ function toggleMusic () {
       class="fixed bottom-[80px] left-2 bg-blue-200 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded inline-flex items-center z-20"
       style={ muted && 'color: #fff; background: rgb(55, 65, 81)' }
       on:click={ toggleMusic }>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
-        <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
-        <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
-        <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
-      </svg>
+      {#if muted}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stop-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.5 5A1.5 1.5 0 0 0 5 6.5v3A1.5 1.5 0 0 0 6.5 11h3A1.5 1.5 0 0 0 11 9.5v-3A1.5 1.5 0 0 0 9.5 5h-3z"/>
+        </svg>
+      {:else}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
+          <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+          <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+          <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+        </svg>
+      {/if}
     </button>
   {/if}
 </div>
@@ -176,13 +191,17 @@ function toggleMusic () {
     }
 
     .text-stroke {
-      -webkit-text-stroke: 0.5px #725f1a;
+      -webkit-text-stroke: 0.5px #000;
     }
 
     .frame-border {
       box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 10%);
       border: 5px double rgb(75, 85, 99) !important;
       @apply bg-gray-100 rounded px-8 pt-6 pb-8;
+    }
+
+    .text-gradient-bg {
+      background: rgba(255, 255, 255, 0.5);
     }
   }
 }

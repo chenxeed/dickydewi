@@ -1,7 +1,6 @@
 <script lang="ts">
 import { fade } from 'svelte/transition';
 import { loadTestimonials, getInvitedGuest } from '../module/sheet';
-import rsvp from '../assets/rsvp.png';
 import covid from '../assets/covid-protocol.jpeg';
 import { onMount } from 'svelte';
 import ReservationForm from './reservation-form.svelte';
@@ -35,20 +34,32 @@ function increaseTestiPage () {
 </script>
 <div
   class="page-min-height flex flex-col items-center justify-evenly px-2 bg-yellow-100 md:w-[768px] mx-auto">
-  <img src={ rsvp } alt="rsvp" class="w-64 my-10 animate-pulse cursor-pointer" on:click={ () => showReservation = true }/>
+  <p
+    in:fade="{{ duration: 2000 }}" out:fade
+    class="my-3 relative z-10 text-4xl font-extrabold text-center ff-main text-yellow-600">
+    Reservasi Kehadiran
+  </p>
+  <p class="px-2">
+    Silahkan konfirmasi kehadiran Anda dengan mengisi formulir reservasi kami.
+  </p>
+  <button
+    class="mt-2 bg-yellow-600 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded w-full transition-all animate-pulse"
+    on:click={ () => showReservation = true }>
+    Isi Formulir
+  </button>
   {#if showReservation}
     <ReservationForm on:close={ () => showReservation = false } on:submitted={ appendTestimonial }/>
   {/if}
   <p
     in:fade="{{ duration: 2000, delay: 1000 }}" out:fade
-    class="mt-2 relative z-10 text-4xl font-extrabold text-center ff-main text-yellow-600">
+    class="my-3 relative z-10 text-4xl font-extrabold text-center ff-main text-yellow-600">
     Testimonial
   </p>
   <div class="ff-body overflow-auto w-full mb-10">
     {#each testimonialPagination as testi}
       <p class="border-2 bg-gray-100 p-2">
-        <span class="text-base">{ testi.name }</span><br>
-        <span class="text-sm">"{@html testi.testimonial.replace(/(?:\r\n|\r|\n)/g, '<br>') }"</span>
+        <span class="text-base font-bold">{ testi.name }</span><br>
+        <span class="text-sm italic">{@html testi.testimonial.replace(/(?:\r\n|\r|\n)/g, '<br>') }</span>
       </p>
     {/each}
     {#if showLoadMore}
