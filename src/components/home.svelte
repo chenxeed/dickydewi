@@ -34,15 +34,15 @@ const guest = getInvitedGuest();
     class="relative z-10 text-sm text-center text-shadow lg:mt-0 p-4"
     transition:slide="{{ duration: 2000, delay: 1000 }}">Dengan penuh hormat, kami mengundang Anda untuk menghadiri acara pernikahan dari</p>
   <p
-    class="relative z-10 text-center lg:mt-0 p-2 rounded-sm"
+    class="relative z-10 text-center lg:mt-0 p-2 rounded-sm text-shadow"
     transition:slide="{{ duration: 2000, delay: 3000 }}">
-      <span class="text-4xl ff-main text-yellow-600">Dicky Kusumohardjo</span><br>
+      <span class="text-4xl ff-main text-yellow-600 text-stroke">Dicky Kusumohardjo</span><br>
       <span class="text-base text-yellow-600 font-bold">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
       <br><span class="text-3xl ff-main text-yellow-600">&</span><br>
       <span class="text-4xl ff-main text-yellow-600">Dewi Suryani Halim</span><br>
       <span class="text-base text-yellow-600 font-bold">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
   <div
-    class="relative z-10 text-base px-4 self-center text-center p-4"
+    class="relative z-10 text-base px-4 self-center text-center p-4 text-shadow"
     transition:slide="{{ duration: 2000, delay: 5000 }}">
     <img src={ glass } alt="ring" class="w-4 inline"/> <span class="font-bold">Resepsi Pernikahan</span>
     <div class="w-full border-t-2 border-gray-400 my-1"/>
@@ -57,7 +57,7 @@ const guest = getInvitedGuest();
     </a>
   </div>
   <p
-    class="relative z-10 text-base italic text-right self-end lg:self-center p-4"
+    class="relative z-10 text-base italic text-shadow text-right self-end lg:self-center p-4"
     transition:slide="{{ duration: 2000, delay: 7000 }}">
     <span class="text-xs">"Kebahagiaan duniawi terbesar yang dapat dialami atau dirasakan manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."</span>
     <br>

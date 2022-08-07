@@ -190,8 +190,8 @@ function toggleMusic () {
       text-shadow: none;
     }
 
-    .text-stroke {
-      -webkit-text-stroke: 0.5px #000;
+    .text-shadow {
+      text-shadow: 1px 1px 2px #000;
     }
 
     .frame-border {
