@@ -36,7 +36,8 @@ function increaseTestiPage () {
   class="page-min-height flex flex-col items-center justify-evenly px-2 bg-yellow-100 md:w-[768px] mx-auto">
   <p
     in:fade="{{ duration: 2000 }}" out:fade
-    class="my-3 relative z-10 text-4xl font-extrabold text-center ff-main text-yellow-600">
+    class="my-3 relative z-10 text-4xl font-bold text-shadow text-center ff-main text-yellow-600"
+    id="join">
     Reservasi Kehadiran
   </p>
   <p class="px-2">
@@ -52,7 +53,8 @@ function increaseTestiPage () {
   {/if}
   <p
     in:fade="{{ duration: 2000, delay: 1000 }}" out:fade
-    class="my-3 relative z-10 text-4xl font-extrabold text-center ff-main text-yellow-600">
+    class="my-3 relative z-10 text-4xl font-bold text-shadow text-center ff-main text-yellow-600"
+    id="testimonial">
     Testimonial
   </p>
   <div class="ff-body overflow-auto w-full mb-10">

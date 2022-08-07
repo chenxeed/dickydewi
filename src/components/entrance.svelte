@@ -100,7 +100,7 @@ function reservationFormSubmitted () {
       <div class="absolute top-4 left-0 bg-yellow-300 transition-all" transition:fly>
         <div class="p-4">
           <p>Special Invitation for</p>
-          <p class="text-xl font-bold">
+          <p class="text-xl font-bold text-shadow">
             { invitationName }
           </p>
         </div>
@@ -113,11 +113,11 @@ function reservationFormSubmitted () {
         in:fly={{ duration: 2000, delay: 2000 }}>
         <img src={saveTheDate} alt="save the date" class="w-28 h-28">
       </div>
-      <p class="mt-5 text-right bg-opacity-50 bg-white p-2 rounded" in:fly={{ duration: 2000, delay: 2000 }}>for the wedding of</p>
-      <p class="mt-5 text-right ff-main bg-opacity-50 bg-white p-2 rounded" in:fly={{ duration: 2000, delay: 3000 }}>
-        <span class="text-5xl text-yellow-700">Dicky</span><br>
-        <span class="text-3xl text-yellow-700">&</span>
-        <span class="text-5xl text-yellow-700">Dewi</span>
+      <p class="mt-5 text-right bg-opacity-50 text-shadow" in:fly={{ duration: 2000, delay: 2000 }}>for the wedding of</p>
+      <p class="mt-5 text-right ff-main bg-opacity-50 bg-white p-2 rounded text-yellow-600 text-shadow" in:fly={{ duration: 2000, delay: 3000 }}>
+        <span class="text-5xl">Dicky</span><br>
+        <span class="text-3xl">&</span>
+        <span class="text-5xl">Dewi</span>
       </p>
       {#if canReservation && !reservation && !isGuest}
         <div class="mt-5">

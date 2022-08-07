@@ -12,6 +12,7 @@ let submitting = false
 let isSubmitted = false
 
 let isGuest = false
+let alreadySubmit = false
 let invitationName = ''
 let phoneNumber = ''
 let personComing = 1
@@ -32,6 +33,7 @@ onMount(() => {
     personComing = guest.guestCount
     isGuest = guest.source === 'guest'
     reservationPass = guest.pass
+    alreadySubmit = Boolean(guest.response)
   }
 })
 
@@ -121,7 +123,11 @@ function encodeHTML(s) {
     {/if}
     {#if !isSubmitted}
       <div class="mb-4 text-center font-bold">
-        <h2>Formulir Reservasi</h2>
+        {#if alreadySubmit}
+          <h2>Ubah Reservasi</h2>
+        {:else}
+          <h2>Formulir Reservasi</h2>
+        {/if}
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="fullname">

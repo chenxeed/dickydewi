@@ -36,11 +36,11 @@ const guest = getInvitedGuest();
   <p
     class="relative z-10 text-center lg:mt-0 p-2 rounded-sm text-shadow"
     transition:slide="{{ duration: 2000, delay: 3000 }}">
-      <span class="text-4xl ff-main text-yellow-600 text-stroke">Dicky Kusumohardjo</span><br>
-      <span class="text-base text-yellow-600 font-bold">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
-      <br><span class="text-3xl ff-main text-yellow-600">&</span><br>
-      <span class="text-4xl ff-main text-yellow-600">Dewi Suryani Halim</span><br>
-      <span class="text-base text-yellow-600 font-bold">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
+      <span class="text-4xl ff-main text-yellow-200 text-stroke">Dicky Kusumohardjo</span><br>
+      <span class="text-base text-yellow-300 font-bold">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
+      <br><span class="text-3xl ff-main text-yellow-200">&</span><br>
+      <span class="text-4xl ff-main text-yellow-200">Dewi Suryani Halim</span><br>
+      <span class="text-base text-yellow-300 font-bold">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
   <div
     class="relative z-10 text-base px-4 self-center text-center p-4 text-shadow"
     transition:slide="{{ duration: 2000, delay: 5000 }}">
