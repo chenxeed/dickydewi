@@ -31,13 +31,13 @@ const guest = getInvitedGuest();
     class="relative z-10 text-sm text-center text-shadow lg:mt-0 bg-gray-100 bg-opacity-80 p-4"
     transition:slide="{{ duration: 2000, delay: 1000 }}">Dengan penuh hormat, kami mengundang Anda untuk menghadiri acara pernikahan dari</p>
   <p
-    class="relative z-10 text-center lg:mt-0 p-2 rounded-sm text-gradient-bg"
+    class="relative z-10 text-center lg:mt-0 p-2 rounded-sm bg-white bg-opacity-60"
     transition:slide="{{ duration: 2000, delay: 3000 }}">
-      <span class="text-3xl ff-main text-stroke text-yellow-200">Dicky Kusumohardjo</span><br>
-      <span class="text-base text-yellow-800">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
-      <br><span class="text-3xl ff-main text-stroke text-yellow-200">&</span><br>
-      <span class="text-3xl ff-main text-stroke text-yellow-200">Dewi Suryani Halim</span><br>
-      <span class="text-base text-yellow-800">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
+      <span class="text-4xl ff-main text-yellow-600">Dicky Kusumohardjo</span><br>
+      <span class="text-base text-yellow-600 font-bold">Putra dari (Alm) Bapak Piettono Tjondro Kusumohardjo dan Ibu Emilia Tjandrawaty Widjaja</span>
+      <br><span class="text-3xl ff-main text-yellow-600">&</span><br>
+      <span class="text-4xl ff-main text-yellow-600">Dewi Suryani Halim</span><br>
+      <span class="text-base text-yellow-600 font-bold">Putri dari Bapak Liem Siauw Bing dan Ibu Tan Yusiani Sutanto</span>
   <div
     class="relative z-10 text-xl px-4 self-start lg:self-center lg:text-center bg-gray-50 bg-opacity-80 p-4"
     transition:slide="{{ duration: 2000, delay: 5000 }}">
