@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { dev } from '$app/env';
+// const dev = false
 
 interface Guest {
   name: string;
@@ -183,7 +184,7 @@ export async function updateReservation (reservation: Reservation): Promise<void
     testimonial: reservation.testimonial,
     guestCount: reservation.guestCount,
     phoneNumber: reservation.phoneNumber,
-    source: 'public'
+    source: invitedGuest.source
   }
 }
 

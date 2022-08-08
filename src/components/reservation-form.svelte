@@ -237,7 +237,7 @@ function encodeHTML(s) {
           on:click={copyReservationURL}
         />
       {/if}
-      <p class="mt-2 italic text-sm font-bold border bg-yellow-300 p-2 animate-pulse">*Tanpa mengurasi rasa hormat, mohon untuk tidak mengirimkan karangan bunga dikarenakan keterbatasan ruangan</p>
+      <p class="mt-2 italic text-sm font-bold border bg-yellow-300 p-2 animate-pulse">*Tanpa mengurangi rasa hormat, mohon untuk tidak mengirimkan karangan bunga dikarenakan keterbatasan ruangan</p>
       <div class="text-center mt-4">
         {#if canOpenInvitation}
           <button
