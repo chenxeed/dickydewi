@@ -31,7 +31,7 @@ const guest = getInvitedGuest();
     <div class="w-full h-full absolute z-10 top-0 left-0 bg-white bg-opacity-50"/>
   </div>
   <p
-    class="relative z-10 text-sm text-center text-shadow lg:mt-0 p-4"
+    class="relative z-10 text-sm text-center lg:mt-0 p-4"
     transition:slide="{{ duration: 2000, delay: 1000 }}">Dengan penuh hormat, kami mengundang Anda untuk menghadiri acara pernikahan dari</p>
   <p
     class="relative z-10 text-center lg:mt-0 p-2 rounded-sm text-shadow"
@@ -57,7 +57,7 @@ const guest = getInvitedGuest();
     </a>
   </div>
   <p
-    class="relative z-10 text-base italic text-shadow text-right self-end lg:self-center p-4"
+    class="relative z-10 text-base italic text-right self-end lg:self-center p-4"
     transition:slide="{{ duration: 2000, delay: 7000 }}">
     <span class="text-xs">"Kebahagiaan duniawi terbesar yang dapat dialami atau dirasakan manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."</span>
     <br>
