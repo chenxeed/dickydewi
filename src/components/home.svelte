@@ -58,7 +58,7 @@ const guest = getInvitedGuest();
     </a>
     <div class="w-full border-t-2 border-gray-400 my-1"/>
     <div class="font-bold">
-      <img src={ clothes } alt="ring" class="w-4 inline"/> Dresscode: Garden Party, Pastel Color
+      <img src={ clothes } alt="ring" class="w-4 inline"/> Dresscode: Garden Party, Warna Pastel
     </div>
   </div>
   <p
