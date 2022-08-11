@@ -6,6 +6,7 @@ import photo2 from '../assets/photo-2.jpg';
 import videoPortraitMp4 from '../assets/bg-portrait.mp4';
 import videoPortraitWebm from '../assets/bg-portrait.webm';
 import glass from '../assets/glass.svg';
+import clothes from '../assets/icons8-clothes-50.png';
 
 const guest = getInvitedGuest();
 </script>
@@ -55,6 +56,10 @@ const guest = getInvitedGuest();
       </svg>
       <span class="text-blue-800 font-bold">Merusaka Nusa Dua, Bali</span><br>
     </a>
+    <div class="w-full border-t-2 border-gray-400 my-1"/>
+    <div class="font-bold">
+      <img src={ clothes } alt="ring" class="w-4 inline"/> Dresscode: Garden Party, Pastel Color
+    </div>
   </div>
   <p
     class="relative z-10 text-base italic text-right self-end lg:self-center p-4"
