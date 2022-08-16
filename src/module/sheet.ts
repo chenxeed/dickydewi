@@ -39,10 +39,10 @@ let invitedGuest: Guest
 
 // const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/ieqa1l0tcmfqh'
 // const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/9z3dmd8qry979'
-const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/0kkhwj3zpwhlw'
-const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/m9ql8dzpeblhv'
-// const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/eex5sn7qlj155'
-// const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/jkcuep6ufh4j9'
+// const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/0kkhwj3zpwhlw'
+// const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/m9ql8dzpeblhv'
+const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/eex5sn7qlj155'
+const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/jkcuep6ufh4j9'
 
 const fakeReservation: Reservation = {
   invitationName: 'Test Ajah',
