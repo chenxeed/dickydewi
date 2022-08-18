@@ -81,7 +81,7 @@ function reservationFormSubmitted () {
   if (isGuest === false) {
     // Help the user to easily revisit their reservation by storing the password
     saveReservationPass(reservedGuest.pass)
-    window.history.replaceState(null, '', window.location.href + `?reservation=${reservedGuest.pass}`)
+    window.history.replaceState(null, '', window.location.origin + `?reservation=${reservedGuest.pass}`)
   }
 }
 

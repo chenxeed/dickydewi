@@ -19,7 +19,7 @@ let personComing = 1
 let testimonial = ''
 let reservationPass = ''
 let isComing = null
-const maxPerson = 8
+const maxPerson = 20
 
 $: reservationUrl = `https://dickydewiwedding.site/?reservation=${reservationPass}`
 
@@ -68,6 +68,10 @@ async function submitReservation () {
   }
   if (isComing === null) {
     alertMessage = 'Mohon konfirmasi kehadiran Anda'
+    return
+  }
+  if (isComing === true && personComing < 1) {
+    alertMessage = 'Mohon isi jumlah orang yang akan datang'
     return
   }
 
@@ -174,8 +178,8 @@ function encodeHTML(s) {
           <div class="flex justify-between">
             <button on:click={decrementPersonComing} type="button" class="bg-white py-2 px-8 text-4xl border border-gray-300 rounded-md shadow-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">-</button>
             <input
-              class="shadow appearance-none border border-gray-500 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline w-10"
-              type="text" value={ personComing } />
+              class="shadow appearance-none border border-gray-500 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline w-12"
+              type="text" value={ personComing } readonly/>
             <button on:click={incrementPersonComing} type="button" class="bg-white py-2 px-8 text-4xl border border-gray-300 rounded-md shadow-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">+</button>
           </div>
         </div>
