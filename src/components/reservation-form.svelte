@@ -70,6 +70,7 @@ async function submitReservation () {
     alertMessage = 'Mohon konfirmasi kehadiran Anda'
     return
   }
+  console.log('hello', isComing, personComing, isComing === true && personComing < 1)
   if (isComing === true && personComing < 1) {
     alertMessage = 'Mohon isi jumlah orang yang akan datang'
     return
