@@ -114,15 +114,8 @@ export async function updateResponse (response: 'Yes'|'No'): Promise<boolean> {
 }
 
 export async function loadTestimonials (): Promise<{ name: string; testimonial: string }[]> {
-  const { data } = dev
-    ? await Promise.resolve({ data: [fakeGuest] })
-    : await axios.get<AuthGuestResponse[]>(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
+  const { data } = await axios.get(`/testimonials.json`)
   return data
-    .filter(guest => guest.Testimonial)
-    .map(guest => ({
-      name: guest.Name,
-      testimonial: guest.Testimonial
-    }))
 }
 
 export function getInvitedGuest (): Guest {
