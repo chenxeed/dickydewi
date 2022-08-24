@@ -49,6 +49,9 @@ let invitedGuest: Guest
 // frontendpikto@gmail.com
 const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/2eqwv1kf2tlco'
 const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/9rovspjfi91lt'
+// lemon squadron email
+// const SHEETDB_API_ONLINE_GUEST = 'https://sheetdb.io/api/v1/ffnkg8nnee85r'
+// const SHEETDB_API_RESERVATION = 'https://sheetdb.io/api/v1/65ixbnjf02tjb'
 
 const fakeReservation: Reservation = {
   invitationName: 'Test Ajah',
