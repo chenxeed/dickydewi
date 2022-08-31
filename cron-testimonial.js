@@ -6,21 +6,18 @@ import fs from 'fs'
 dotenv.config()
 
 schedule('* 9,21 * * *', async function() {
-  console.log('cronjob testimonial is running')
+  console.log('cronjob testimonial is running at', Date(Date.now()).toString())
 
   const SHEETDB_API_ONLINE_GUEST = process.env.VITE_SHEETDB_API_ONLINE_GUEST
 
   try {
     const testimonials = await loadTestimonials()
+    console.log('testimonials length: ', testimonials?.length)
 
     const filePath = './static/'
     const fileName = 'testimonials.json'
-
-    console.log('testimonials', testimonials)
-
     fs.writeFileSync(filePath + fileName, JSON.stringify(testimonials), 'utf-8')
-
-    console.log('file written')
+    console.log('file successfully written')
   } catch(e) {
     console.log('Testimonial Error', e)
   }
