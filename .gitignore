@@ -5,3 +5,4 @@ node_modules
 /build
 /functions
 /static/testimonials.json
+.env

@@ -4,6 +4,7 @@ import Entrance from '../components/entrance.svelte'
 import Home from '../components/home.svelte'
 import Gallery from '../components/gallery.svelte'
 import Join from '../components/join.svelte'
+import Gift from '../components/gift.svelte'
 import song from '../../static/joker-queen.mp3';
 import { Howl } from 'howler';
 
@@ -81,6 +82,9 @@ function toggleMusic () {
             <div>
               <Join bind:this={joinComponent}/>
             </div>
+            <div id="gift">
+              <Gift/>
+            </div>
             <div class="w-full h-10 text-center text-xs text-yellow-200 bg-gray-600">
               Copyright @ <a href="https://chenxeed.com" target="_blank">chenxeed</a> 2022<br>
               Music by <a href="https://www.youtube.com/watch?v=r5Lr7NC50z0" target="_blank">Joker and the Queen - Ed Sheeran</a>
@@ -112,11 +116,18 @@ function toggleMusic () {
           </a>
           <div class="border-l-2 border-gray-500 w-1 h-full"></div>
           <a class="flex flex-col items-center" href="#testimonial" on:click|preventDefault={() => { scrollTo('testimonial'); } }>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-              <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-valentine" viewBox="0 0 16 16">
+              <path d="M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132ZM2.25 4a.25.25 0 0 0-.25.25v1.5a.25.25 0 0 0 .5 0V4.5h1.25a.25.25 0 0 0 0-.5h-1.5Zm10 0a.25.25 0 1 0 0 .5h1.25v1.25a.25.25 0 1 0 .5 0v-1.5a.25.25 0 0 0-.25-.25h-1.5ZM2.5 10.25a.25.25 0 1 0-.5 0v1.5c0 .138.112.25.25.25h1.5a.25.25 0 1 0 0-.5H2.5v-1.25Zm11.5 0a.25.25 0 1 0-.5 0v1.25h-1.25a.25.25 0 1 0 0 .5h1.5a.25.25 0 0 0 .25-.25v-1.5Z"/>
+              <path fill-rule="evenodd" d="M0 2.994v-.06a1 1 0 0 1 .859-.99l13-1.857a1 1 0 0 1 1.141.99V2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2.994ZM1 3v10h14V3H1Z"/>
             </svg>
-            Testimonial
+            Ucapan
+          </a>
+          <div class="border-l-2 border-gray-500 w-1 h-full"></div>
+          <a class="flex flex-col items-center" href="#gift" on:click|preventDefault={() => { scrollTo('gift'); } }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gift-fill" viewBox="0 0 16 16">
+              <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7h6zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9H2.5z"/>
+            </svg>
+            Gift
           </a>
         </nav>
       </div>
