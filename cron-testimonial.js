@@ -24,8 +24,10 @@ schedule('0 9,21 * * *', async function() {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function loadTestimonials () {
+  console.log('load testimonial')
   const SHEETDB_API_ONLINE_GUEST = process.env.VITE_SHEETDB_API_ONLINE_GUEST
   const { data } = await axios.get(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
+  console.log('testimonials loaded: ', data.length)
   return data
     .filter(guest => guest.Testimonial)
     .map(guest => ({
