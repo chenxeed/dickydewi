@@ -5,10 +5,8 @@ import fs from 'fs'
 
 dotenv.config()
 
-schedule('* 9,21 * * *', async function() {
+schedule('0 9,21 * * *', async function() {
   console.log('cronjob testimonial is running at', Date(Date.now()).toString())
-
-  const SHEETDB_API_ONLINE_GUEST = process.env.VITE_SHEETDB_API_ONLINE_GUEST
 
   try {
     const testimonials = await loadTestimonials()
@@ -22,13 +20,16 @@ schedule('* 9,21 * * *', async function() {
     console.log('Testimonial Error', e)
   }
 
-  async function loadTestimonials () {
-    const { data } = await axios.get(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
-    return data
-      .filter(guest => guest.Testimonial)
-      .map(guest => ({
-        name: guest.Name,
-        testimonial: guest.Testimonial
-      }))
-  }
 });
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function loadTestimonials () {
+  const SHEETDB_API_ONLINE_GUEST = process.env.VITE_SHEETDB_API_ONLINE_GUEST
+  const { data } = await axios.get(`${SHEETDB_API_ONLINE_GUEST}/search?ONLINE=ONLINE`)
+  return data
+    .filter(guest => guest.Testimonial)
+    .map(guest => ({
+      name: guest.Name,
+      testimonial: guest.Testimonial
+    }))
+}
