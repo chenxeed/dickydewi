@@ -7,19 +7,7 @@ dotenv.config()
 
 schedule('0 9,21 * * *', async function() {
   console.log('cronjob testimonial is running at', Date(Date.now()).toString())
-
-  try {
-    const testimonials = await loadTestimonials()
-    console.log('testimonials length: ', testimonials?.length)
-
-    const filePath = './static/'
-    const fileName = 'testimonials.json'
-    fs.writeFileSync(filePath + fileName, JSON.stringify(testimonials), 'utf-8')
-    console.log('file successfully written')
-  } catch(e) {
-    console.log('Testimonial Error', e)
-  }
-
+  updateTestimonials()
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -34,4 +22,19 @@ export async function loadTestimonials () {
       name: guest.Name,
       testimonial: guest.Testimonial
     }))
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function updateTestimonials () {
+  try {
+    const testimonials = await loadTestimonials()
+    console.log('testimonials length: ', testimonials?.length)
+
+    const filePath = './static/'
+    const fileName = 'testimonials.json'
+    fs.writeFileSync(filePath + fileName, JSON.stringify(testimonials), 'utf-8')
+    console.log('file successfully written')
+  } catch(e) {
+    console.log('Testimonial Error', e)
+  }
 }
