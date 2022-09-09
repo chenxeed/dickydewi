@@ -30,7 +30,7 @@ export async function updateTestimonials () {
     const testimonials = await loadTestimonials()
     console.log('testimonials length: ', testimonials?.length)
 
-    const filePath = './static/'
+    const filePath = './build/static/'
     const fileName = 'testimonials.json'
     fs.writeFileSync(filePath + fileName, JSON.stringify(testimonials), 'utf-8')
     console.log('file successfully written')
